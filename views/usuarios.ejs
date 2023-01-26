@@ -1,0 +1,74 @@
+<%- include("cabecera",{"titulo" : "Panel de control - Usuarios" }) -%>
+    <div class="contenido">
+        <div class="center-align">
+            <div id="usuarios">
+
+                <h2>Crear nuevo usuario</h2>
+                <form action="/usuarios" method="post">
+                    <div class="row">
+                        <input type="text" class="col offset-s2 s8 placeholder-oscuro" name="user"
+                            placeholder="Usuario">
+                    </div>
+                    <div class="row">
+                        <input type="password" class="col offset-s2 s8 placeholder-oscuro" name="pass"
+                            placeholder="Contraseña">
+                    </div>
+                    <input type="submit" name="submit" class="waves-effect waves-light teal btn"
+                        value="Nuevo usuario">
+                </form>
+                <h2>Usuarios</h2>
+                <div class="row">
+
+
+                    <ul class="collection col s10 offset-s1 filaUsuarios">
+                        <% let usuario=null; for(let n=0; n < usuarios.length; n++) { usuario=usuarios[n]; 
+                            
+                            switch (usuario.permission) {
+                                case perm_user:
+                                    usuario.tipo = "Usuario"
+                                    break;
+                                case perm_admin:
+                                    usuario.tipo = "Administrador"
+                                    break;   
+                            }
+
+                            if (n % 3==0
+                            && n !=0) { %>
+                    </ul>
+                    <ul class="collection col s10 offset-s1 filaUsuarios">
+                        <% } %>
+                            <li class="collection-item card teal lighten-2">
+                                <div class="card-content ">
+                                    <p class="card-title">
+                                        <%= usuario.user %> - <%= usuario.tipo %>
+                                    </p>
+                                    <form action="/usuarios" method="post">
+                                        <input type="hidden" name="user" value="<%= usuario.user %>">
+                                        <input type="password" name="pass" placeholder="Contraseña nueva">
+                                        <input type="submit" class="waves-effect waves-light teal btn"
+                                            value="Cambiar contraseña" name="submit">
+                                    </form>
+                                    <form action="/usuarios" method="post">
+                                        <input type="hidden" name="user" value="<%= usuario.user %>">
+                                        <input type="submit" class="waves-effect waves-light teal btn"
+                                            value="Borrar usuario" name="submit">
+                                    </form>
+                                    <form action="/usuarios" method="post">
+                                        <input type="hidden" name="user" value="<%= usuario.user %>">
+                                        <select id="permisos" name="permisos">
+                                            <option value="-1" disabled selected>Cambiar permisos</option>
+                                            <option value='<%= perm_admin %>'>Administrador</option>
+                                            <option value='<%= perm_user %>'>Usuario</option>
+                                        </select>
+                                        <input type="submit" class="waves-effect waves-light teal btn"
+                                            name="submit" value="Cambiar permisos">
+                                    </form>
+                                </div>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include("pie") -%>

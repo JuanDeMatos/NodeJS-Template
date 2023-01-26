@@ -1,0 +1,25 @@
+<%- include("cabecera",{"titulo" : "Panel de control" }) -%>
+    <div class="contenido">
+        <section>
+            <div class="center-align">
+                <a href="/usuarios" style='display: <%= admin %>' class="waves-effect waves-light btn">Usuarios</a>
+                <div class="row">
+                    <div class="col offset-s1 offset-m3 s10 m6">
+                        <div class="row">
+                            <div class="z-depth-5 col s12 red" style='display: <%= pass_error %>'>
+                                <p class="">Las contraseñas no coinciden</p>
+                            </div>
+                        </div>
+                        <h6>Cambiar contraseña</h6>
+                        <form action="/control" method="post" class="form">
+                            <label for="pass1">Nueva contraseña: </label><input type="password" name="pass1">
+                            <label for="pass2">Repite la contraseña: </label><input type="password" name="pass2">
+                            <input class="waves-effect waves-light teal btn" type="submit" name="submit"
+                                value="Cambiar contraseña">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<%- include("pie") -%>
