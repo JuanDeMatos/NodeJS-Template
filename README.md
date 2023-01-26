@@ -3,6 +3,7 @@ Basic template for a NodeJS web server.
 
 Dependencies:
 npm install express
+
 npm install sqlite3
 
 
