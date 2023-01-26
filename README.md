@@ -1,13 +1,13 @@
 # NodeJS-Template
 Basic template for a NodeJS web server.
 
-Dependencies:
+# Dependencies:
 npm install express
 
 npm install sqlite3
 
 
-USERS: 
+# USERS: 
 
 USER - PASSWORD
 
